@@ -1,0 +1,41 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+ext {
+
+    bintrayRepo = 'java'
+    bintrayName = 'linalg'
+
+    publishedGroupId = 'io.jeti.linalg'
+    libraryName = 'linalg'
+    artifact = 'linalg'
+
+    libraryDescription = 'A pure-java linear algebra package.'
+
+    siteUrl = 'https://github.com/jeti/linalg'
+    gitUrl = 'https://github.com/jeti/linalg.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'mholzel'
+    developerName = 'Matthew Holzel'
+    developerEmail = 'matthew.holzel@gmail.com'
+
+    organization = 'mholzel'
+
+    licenseName = 'The Apache Software License, Version 2.0'  //Example for license
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+
+//These two remote files contain Bintray configuration as described above.
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/install.gradle'
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/bintray.gradle'

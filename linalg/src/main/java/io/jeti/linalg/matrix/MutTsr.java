@@ -1,4 +1,4 @@
-package io.jeti.linalg.matrix.interfaces;
+package io.jeti.linalg.matrix;
 
 public interface MutTsr<T extends MutTsr<T>> extends Tsr<T> {
 

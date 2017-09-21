@@ -1,6 +1,6 @@
-package io.jeti.linalg.matrix.interfaces;
+package io.jeti.linalg.matrix;
 
-import io.jeti.linalg.matrix.Check;
+import io.jeti.linalg.matrix.utils.Check;
 import java.util.Random;
 
 public interface Tsr<T extends Tsr<T>> {

@@ -1,6 +1,6 @@
-package io.jeti.linalg.matrix.interfaces;
+package io.jeti.linalg.matrix;
 
-import io.jeti.linalg.matrix.Check;
+import io.jeti.linalg.matrix.utils.Check;
 import java.util.ArrayList;
 import java.util.List;
 

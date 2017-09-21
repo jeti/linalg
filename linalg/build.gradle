@@ -2,11 +2,8 @@ apply plugin: 'java'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 }
-
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
 
 ext {
 
@@ -17,12 +14,12 @@ ext {
     libraryName = 'linalg'
     artifact = 'linalg'
 
-    libraryDescription = 'A pure-java linear algebra package.'
+    libraryDescription = 'A package of linear algebra interfaces with many default methods. If you are not developing your own matrix package, then you typically will not include this package. Rather, you should find a concrete implementation. This package is meant to provide interfaces so that it is easier to drag and drop different implementations.'
 
     siteUrl = 'https://github.com/jeti/linalg'
     gitUrl = 'https://github.com/jeti/linalg.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.2'
 
     developerId = 'mholzel'
     developerName = 'Matthew Holzel'

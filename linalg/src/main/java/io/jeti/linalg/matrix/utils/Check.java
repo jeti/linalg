@@ -1,7 +1,7 @@
-package io.jeti.linalg.matrix;
+package io.jeti.linalg.matrix.utils;
 
-import io.jeti.linalg.matrix.interfaces.Mat;
-import io.jeti.linalg.matrix.interfaces.Vec;
+import io.jeti.linalg.matrix.Mat;
+import io.jeti.linalg.matrix.Vec;
 import java.util.Collection;
 import java.util.List;
 

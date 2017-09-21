@@ -1,6 +1,6 @@
-package io.jeti.linalg.matrix.interfaces;
+package io.jeti.linalg.matrix;
 
-import io.jeti.linalg.matrix.Check;
+import io.jeti.linalg.matrix.utils.Check;
 
 /**
  * A {@link MutMat} is a two-dimensional data structure which extends the

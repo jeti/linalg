@@ -1,6 +1,6 @@
-package io.jeti.linalg.matrix.interfaces;
+package io.jeti.linalg.matrix;
 
-import io.jeti.linalg.matrix.Check;
+import io.jeti.linalg.matrix.utils.Check;
 
 /**
  * A {@link MutVec} is a one-dimensional data structure which extends the

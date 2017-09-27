@@ -41,10 +41,10 @@ import java.util.List;
  * Here are some guidelines for constructing vectors:
  * </p>
  * <ol>
- * <li>If you want a vector of zeros, use either {@link #zeros(int)},
+ * <li>If you want a vector of _zeros, use either {@link #_zeros(int)},
  * {@link #newInstance(int)}, or {@link #newInstance(int, Number)} with a value
  * of 0.</li>
- * <li>If you want a vector of ones, use either {@link #ones(int)} or
+ * <li>If you want a vector of _ones, use either {@link #_ones(int)} or
  * {@link #newInstance(int, Number)} with a value of 1.</li>
  * <li>If you want a vector where all the elements are the same number, use
  * {@link #newInstance(int, Number)}.</li>
@@ -144,7 +144,7 @@ public interface Vec<T extends Vec<T>> extends Tsr<T> {
      * @return A {@link Vec} with the specified number of elements, where all of
      *         the elements are set to 1.
      */
-    default T ones(int elems) {
+    default T _ones(int elems) {
         return newInstance(elems, index -> 1d);
     }
 
@@ -152,7 +152,7 @@ public interface Vec<T extends Vec<T>> extends Tsr<T> {
      * @return A {@link Vec} with the specified number of elements, where all of
      *         the elements are set to 0.
      */
-    default T zeros(int elems) {
+    default T _zeros(int elems) {
         return newInstance(elems, index -> 0d);
     }
 
@@ -160,7 +160,7 @@ public interface Vec<T extends Vec<T>> extends Tsr<T> {
      * @return A {@link Vec} with the specified number of elements, where each
      *         entry is a uniform random number in [0,1].
      */
-    default T rand(int elems) {
+    default T _rand(int elems) {
         return newInstance(elems, index -> random.nextDouble());
     }
 
@@ -169,7 +169,7 @@ public interface Vec<T extends Vec<T>> extends Tsr<T> {
      *         entry is a Gaussian random number drawn from a distribution with
      *         mean 0 and variance 1.
      */
-    default T randn(int elems) {
+    default T _randn(int elems) {
         return newInstance(elems, index -> random.nextGaussian());
     }
 
@@ -203,7 +203,8 @@ public interface Vec<T extends Vec<T>> extends Tsr<T> {
     Double get(int element);
 
     /**
-     * If (from&lt;to), then return {@link #get(int, int, int)} where stride = 1.
+     * If (from&lt;to), then return {@link #get(int, int, int)} where stride =
+     * 1.
      * <p>
      * Otherwise, return {@link #get(int, int, int)} where stride = -1.
      */

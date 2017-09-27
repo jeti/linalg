@@ -1,8 +1,7 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'junit:junit:4.12'
+    implementation 'junit:junit:4.12'
 }
 
 ext {
@@ -19,7 +18,7 @@ ext {
     siteUrl = 'https://github.com/jeti/linalg'
     gitUrl = 'https://github.com/jeti/linalg.git'
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
 
     developerId = 'mholzel'
     developerName = 'Matthew Holzel'
@@ -34,5 +33,5 @@ ext {
 }
 
 //These two remote files contain Bintray configuration as described above.
-apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/install.gradle'
-apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/bintray.gradle'
+apply from: 'https://raw.githubusercontent.com/jeti/jcenter/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/jeti/jcenter/master/bintray.gradle'

@@ -14,7 +14,7 @@ abstract public class VecTest {
     public void newInstance() throws Exception {
         forAllSizes((base, elems) -> {
 
-            /* Construct vectors of zeros using all of the available methods */
+            /* Construct vectors of _zeros using all of the available methods */
             List<Float> zerosList = generateList(elems, ind -> 0f);
             Float[] zerosArray = zerosList.toArray(new Float[0]);
 
@@ -24,7 +24,7 @@ abstract public class VecTest {
             assertEquals(base.newInstance(zerosList), ind -> 0);
             assertEquals(base.newInstance(zerosArray), ind -> 0);
 
-            /* Construct vectors of ones using all of the available methods */
+            /* Construct vectors of _ones using all of the available methods */
             List<Double> onesList = generateList(elems, ind -> 1.0);
             Double[] onesArray = onesList.toArray(new Double[0]);
 
@@ -50,7 +50,7 @@ abstract public class VecTest {
     @org.junit.Test
     public void rand() throws Exception {
         forAllSizes((base, elems) -> {
-            TestCase.assertEquals(base.rand(elems).size(), elems);
+            TestCase.assertEquals(base._rand(elems).size(), elems);
         });
     }
 
@@ -60,7 +60,7 @@ abstract public class VecTest {
     @org.junit.Test
     public void randn() throws Exception {
         forAllSizes((base, elems) -> {
-            TestCase.assertEquals(base.randn(elems).size(), elems);
+            TestCase.assertEquals(base._randn(elems).size(), elems);
         });
     }
 
@@ -73,7 +73,7 @@ abstract public class VecTest {
     public void toList() throws Exception {
         forAllSizes((base, elems) -> {
 
-            Vec vec = base.randn(elems);
+            Vec vec = base._randn(elems);
             List<Double> list = vec.toList();
             List<Double> listCopy = vec.toList();
 
@@ -95,15 +95,15 @@ abstract public class VecTest {
     public void size() throws Exception {
         forAllSizes((base, elems) -> {
 
-            /* Construct vectors of zeros using all of the available methods */
+            /* Construct vectors of _zeros using all of the available methods */
             Set<Vec> vecs = new HashSet<>();
             vecs.add(base.newInstance(elems));
             vecs.add(base.newInstance(elems, 0));
             vecs.add(base.newInstance(elems, index -> 0));
-            vecs.add(base.zeros(elems));
-            vecs.add(base.ones(elems));
-            vecs.add(base.rand(elems));
-            vecs.add(base.randn(elems));
+            vecs.add(base._zeros(elems));
+            vecs.add(base._ones(elems));
+            vecs.add(base._rand(elems));
+            vecs.add(base._randn(elems));
             List<Integer> zerosList = generateList(elems, ind -> 0);
             Integer[] zerosArray = zerosList.toArray(new Integer[0]);
             vecs.add(base.newInstance(zerosList));
@@ -142,7 +142,7 @@ abstract public class VecTest {
     public void getSelection() throws Exception {
         forAllSizes((base, elems) -> {
 
-            Vec randn = base.randn(elems);
+            Vec randn = base._randn(elems);
             Vec sliceStart = randn.get(0, randn.size());
             Vec sliceEnd = randn.get(0, randn.size());
             int its = 0;
@@ -180,7 +180,7 @@ abstract public class VecTest {
         int stride = 4;
         forAllSizes((base, elems) -> {
 
-            Vec randn = base.randn(elems);
+            Vec randn = base._randn(elems);
             Vec slice = randn.get(0, randn.size());
             int its = 0;
 
@@ -208,9 +208,9 @@ abstract public class VecTest {
     public void applyVector() throws Exception {
         forAllSizes((base, elems) -> {
 
-            /* Create vectors of ones, zeros, and counting */
-            Vec zeros = base.zeros(elems);
-            Vec ones = base.ones(elems);
+            /* Create vectors of _ones, _zeros, and counting */
+            Vec zeros = base._zeros(elems);
+            Vec ones = base._ones(elems);
             Vec counting = base.newInstance(elems, ind -> ind);
 
             /* All of these should be zero */
@@ -218,7 +218,7 @@ abstract public class VecTest {
             assertEquals(ones.apply((a, b) -> a * b + b, zeros), ind -> 0);
             assertEquals(counting.apply((a, b) -> a * b + b, zeros), ind -> 0);
 
-            /* This should be ones */
+            /* This should be _ones */
             assertEquals(zeros.apply((a, b) -> a * b + b, ones), ind -> 1);
 
             /* This should be counting + 1 */
@@ -230,9 +230,9 @@ abstract public class VecTest {
     public void dot() throws Exception {
         forAllSizes((base, elems) -> {
 
-            /* Create vectors of ones, zeros, and counting */
-            Vec zeros = base.zeros(elems);
-            Vec ones = base.ones(elems);
+            /* Create vectors of _ones, _zeros, and counting */
+            Vec zeros = base._zeros(elems);
+            Vec ones = base._ones(elems);
             Vec counting = base.newInstance(elems, ind -> ind);
 
             /* Compute the dot product of all of these combinations */
@@ -259,8 +259,8 @@ abstract public class VecTest {
         forAllSizes((base, elems) -> {
 
             /* Create some random matrices and see if their sums are ok. */
-            Vec rand = base.rand(elems);
-            Vec randn = base.randn(elems);
+            Vec rand = base._rand(elems);
+            Vec randn = base._randn(elems);
 
             /* TODO, why do we need the cast here? */
             Vec sum1 = (Vec) rand.plus(randn);
@@ -281,8 +281,8 @@ abstract public class VecTest {
             /*
              * Create some random matrices and see if their differences are ok.
              */
-            Vec rand = base.rand(elems);
-            Vec randn = base.randn(elems);
+            Vec rand = base._rand(elems);
+            Vec randn = base._randn(elems);
 
             /* TODO, why do we need the cast here? */
             Vec sum1 = (Vec) rand.minus(randn);
@@ -303,8 +303,8 @@ abstract public class VecTest {
             /*
              * Create some random matrices and see if their differences are ok.
              */
-            Vec rand = base.rand(elems);
-            Vec randn = base.randn(elems);
+            Vec rand = base._rand(elems);
+            Vec randn = base._randn(elems);
 
             /* TODO, why do we need the cast here? */
             Vec sum1 = (Vec) rand.times(randn);
@@ -325,7 +325,7 @@ abstract public class VecTest {
     @org.junit.Test
     public void apply() throws Exception {
         forAllSizes((base, elems) -> {
-            Vec rand = base.rand(elems);
+            Vec rand = base._rand(elems);
             assertEquals(rand.apply((a, b) -> a * a + b, 3),
                     ind -> rand.get(ind) * rand.get(ind) + 3);
         });

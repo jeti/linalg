@@ -15,7 +15,7 @@ abstract public class MatTest {
         forAllSizes((base, rows, cols) -> {
 
             /*
-             * Construct vectors of zeros using all of the available methods
+             * Construct vectors of _zeros using all of the available methods
              */
             List<List<Integer>> zerosList = generateList(rows, cols, (r, c) -> 0);
             Integer[][] zerosArray = new Integer[rows][cols];
@@ -25,12 +25,12 @@ abstract public class MatTest {
             assertEquals(base.newInstance(rows, cols), (r, c) -> 0);
             assertEquals(base.newInstance(rows, cols, 0), (r, c) -> 0);
             assertEquals(base.newInstance(rows, cols, (r, c) -> 0), (r, c) -> 0);
-            assertEquals(base.zeros(rows, cols), (r, c) -> 0);
+            assertEquals(base._zeros(rows, cols), (r, c) -> 0);
             assertEquals(base.newInstance(zerosList), (r, c) -> 0);
             assertEquals(base.newInstance(zerosArray), (r, c) -> 0);
 
             /*
-             * Construct vectors of ones using all of the available methods
+             * Construct vectors of _ones using all of the available methods
              */
             List<List<Integer>> onesList = generateList(rows, cols, (r, c) -> 1);
             Integer[][] onesArray = new Integer[rows][cols];
@@ -40,7 +40,7 @@ abstract public class MatTest {
 
             assertEquals(base.newInstance(rows, cols, 1), (r, c) -> 1);
             assertEquals(base.newInstance(rows, cols, (r, c) -> 1.0), (r, c) -> 1);
-            assertEquals(base.ones(rows, cols), (r, c) -> 1);
+            assertEquals(base._ones(rows, cols), (r, c) -> 1);
             assertEquals(base.newInstance(onesList), (r, c) -> 1);
             assertEquals(base.newInstance(onesArray), (r, c) -> 1);
 
@@ -68,8 +68,8 @@ abstract public class MatTest {
     @org.junit.Test
     public void rand() throws Exception {
         forAllSizes((base, rows, cols) -> {
-            TestCase.assertEquals(base.rand(rows, cols).rows(), rows);
-            TestCase.assertEquals(base.rand(rows, cols).cols(), cols);
+            TestCase.assertEquals(base._rand(rows, cols).rows(), rows);
+            TestCase.assertEquals(base._rand(rows, cols).cols(), cols);
         });
     }
 
@@ -79,8 +79,8 @@ abstract public class MatTest {
     @org.junit.Test
     public void randn() throws Exception {
         forAllSizes((base, rows, cols) -> {
-            TestCase.assertEquals(base.randn(rows, cols).rows(), rows);
-            TestCase.assertEquals(base.randn(rows, cols).cols(), cols);
+            TestCase.assertEquals(base._randn(rows, cols).rows(), rows);
+            TestCase.assertEquals(base._randn(rows, cols).cols(), cols);
         });
     }
 
@@ -93,7 +93,7 @@ abstract public class MatTest {
     public void toList() throws Exception {
         forAllSizes((base, rows, cols) -> {
 
-            Mat mat = base.randn(rows, cols);
+            Mat mat = base._randn(rows, cols);
             List<List<Double>> list = mat.toList();
             List<List<Double>> listCopy = mat.toList();
 
@@ -114,7 +114,7 @@ abstract public class MatTest {
         forAllSizes((base, rows, cols) -> {
 
             /*
-             * Construct vectors of zeros using all of the available methods
+             * Construct vectors of _zeros using all of the available methods
              */
             List<List<Integer>> onesList = generateList(rows, cols, (r, c) -> 1);
             Integer[][] onesArray = new Integer[rows][cols];
@@ -125,10 +125,10 @@ abstract public class MatTest {
             Set<Mat> mats = new HashSet<>();
             mats.add(base.newInstance(rows, cols, 0));
             mats.add(base.newInstance(rows, cols, (row, col) -> 0));
-            mats.add(base.zeros(rows, cols));
-            mats.add(base.ones(rows, cols));
-            mats.add(base.rand(rows, cols));
-            mats.add(base.randn(rows, cols));
+            mats.add(base._zeros(rows, cols));
+            mats.add(base._ones(rows, cols));
+            mats.add(base._rand(rows, cols));
+            mats.add(base._randn(rows, cols));
             mats.add(base.newInstance(onesList));
             mats.add(base.newInstance(onesArray));
             for (Mat mat : mats) {
@@ -167,7 +167,7 @@ abstract public class MatTest {
     public void getSelection() throws Exception {
         forAllSizes((base, rows, cols) -> {
 
-            Mat mat = base.randn(rows, cols);
+            Mat mat = base._randn(rows, cols);
             Mat submatrix = mat.get(0, mat.rows(), 0, mat.cols());
             int its = 0;
 
@@ -205,7 +205,7 @@ abstract public class MatTest {
 
         forAllSizes((base, rows, cols) -> {
 
-            Mat mat = base.randn(rows, cols);
+            Mat mat = base._randn(rows, cols);
             Mat submatrix = mat.get(0, mat.rows(), 0, mat.cols());
             int its = 0;
 
@@ -238,12 +238,12 @@ abstract public class MatTest {
             if (rows != cols)
                 return;
 
-            /* Create matrices of ones, zeros, and counting */
-            Mat eye = base.I(rows);
-            Mat zeros = base.zeros(rows, rows);
-            Mat ones = base.ones(rows, rows);
+            /* Create matrices of _ones, _zeros, and counting */
+            Mat eye = base._eye(rows);
+            Mat zeros = base._zeros(rows, rows);
+            Mat ones = base._ones(rows, rows);
             Mat counting = base.newInstance(rows, rows, (r, c) -> r + rows * c);
-            Mat randn = base.randn(rows, rows);
+            Mat randn = base._randn(rows, rows);
 
             /* All of these should be zero */
             assertEquals(zeros.apply((a, b) -> a * b + b, zeros), (r, c) -> 0.0);
@@ -267,8 +267,8 @@ abstract public class MatTest {
         forAllSizes((base, rows, cols) -> {
 
             Mat zero = base.newInstance(1);
-            Mat rand = base.rand(rows, cols);
-            Mat randn = base.randn(rows, cols);
+            Mat rand = base._rand(rows, cols);
+            Mat randn = base._randn(rows, cols);
 
             /* TODO, why do we need the cast here? */
             Mat sum1 = (Mat) rand.plus(randn);
@@ -286,8 +286,8 @@ abstract public class MatTest {
         forAllSizes((base, rows, cols) -> {
 
             Mat zero = base.newInstance(1);
-            Mat rand = base.rand(rows, cols);
-            Mat randn = base.randn(rows, cols);
+            Mat rand = base._rand(rows, cols);
+            Mat randn = base._randn(rows, cols);
 
             /* TODO, why do we need the cast here? */
             Mat sum1 = (Mat) rand.minus(randn);
@@ -302,7 +302,7 @@ abstract public class MatTest {
 
     /**
      * Try multiplying a random matrix by both the identity and zero matrices.
-     * Also multiply by a matrix of ones by a counting matrix.
+     * Also multiply by a matrix of _ones by a counting matrix.
      */
     @org.junit.Test
     public void times() throws Exception {
@@ -312,9 +312,9 @@ abstract public class MatTest {
 
                 final int in = inner;
                 Mat zero = base.newInstance(1);
-                Mat ones = base.ones(rows, inner);
-                Mat eye = base.I(inner);
-                Mat randn = base.randn(inner, cols);
+                Mat ones = base._ones(rows, inner);
+                Mat eye = base._eye(inner);
+                Mat randn = base._randn(inner, cols);
                 Mat counting = base.newInstance(inner, cols, (r, c) -> r + in * c);
 
                 assertEquals(eye.times(randn), (r, c) -> randn.get(r, c));
@@ -331,7 +331,7 @@ abstract public class MatTest {
     @org.junit.Test
     public void apply() throws Exception {
         forAllSizes((base, rows, cols) -> {
-            Mat rand = base.rand(rows, cols);
+            Mat rand = base._rand(rows, cols);
             Mat rand2 = rand.apply((a, b) -> a * a + b, 3);
             assertEquals(rand2, (r, c) -> rand.get(r, c) * rand.get(r, c) + 3);
         });

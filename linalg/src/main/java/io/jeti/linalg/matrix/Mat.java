@@ -112,28 +112,28 @@ public interface Mat<T extends Mat<T>> extends Tsr<T> {
     /**
      * @return A (rows x cols) Matrix, where all values are set to 1.
      */
-    default T ones(int rows, int cols) {
+    default T _ones(int rows, int cols) {
         return newInstance(rows, cols, (row, col) -> 1d);
     }
 
     /**
      * @return A (rows x cols) Matrix, where all values are set to 0.
      */
-    default T zeros(int rows, int cols) {
+    default T _zeros(int rows, int cols) {
         return newInstance(rows, cols, (row, col) -> 0d);
     }
 
     /**
      * @return A (rows x rows) identity Matrix.
      */
-    default T I(int rows) {
+    default T _eye(int rows) {
         return newInstance(rows, rows, (row, col) -> row == col ? 1d : 0d);
     }
 
     /**
      * @return A (rows x cols) Matrix of uniform random number in [0,1].
      */
-    default T rand(int rows, int cols) {
+    default T _rand(int rows, int cols) {
         return newInstance(rows, cols, (row, col) -> random.nextDouble());
     }
 
@@ -141,7 +141,7 @@ public interface Mat<T extends Mat<T>> extends Tsr<T> {
      * @return A (rows x cols) Matrix of Gaussian random number drawn from a
      *         distribution with mean 0 and variance 1.
      */
-    default T randn(int rows, int cols) {
+    default T _randn(int rows, int cols) {
         return newInstance(rows, cols, (row, col) -> random.nextGaussian());
     }
 
@@ -263,7 +263,7 @@ public interface Mat<T extends Mat<T>> extends Tsr<T> {
     default T pow(int pw) {
         /* TODO Obviously a lot of room for improvement here. */
         Check.nonNegativeIndex(pw);
-        T C = I(rows());
+        T C = _eye(rows());
         for (int i = 0; i < pw; i++)
             C = this.times(C);
         return C;

@@ -1,1 +1,1 @@
-# Please visit https://jeti.github.io/linalg/ for a description of this project and its documentation.
+# Please visit [linalg.jeti.io](http://linalg.jeti.io/) for a description of this project and its documentation.

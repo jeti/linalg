@@ -345,8 +345,7 @@ abstract public class MatTest {
      * --------------------------------------------------
      */
     /**
-     * @return an instance of the concrete
-     *         {@link Mat} class to be tested.
+     * @return an instance of the concrete {@link Mat} class to be tested.
      */
     public abstract Mat getInstance();
 
@@ -413,9 +412,9 @@ abstract public class MatTest {
     }
 
     /**
-     * @return A class capable of filling a double array with an arbitrary type.
-     *         Specifically, each element can be set by calling this class's
-     *         {@link #apply(int,int)} method.
+     * A class capable of filling a double array with an arbitrary type.
+     * Specifically, each element can be set by calling this class's
+     * {@link #apply(int,int)} method.
      */
     private interface MatFiller<T extends Number> {
         T apply(int row, int col);
@@ -428,7 +427,7 @@ abstract public class MatTest {
     private <T extends Number> List<List<T>> generateList(int rows, int cols, MatFiller<T> filler) {
         List<List<T>> list = new ArrayList<>();
         for (int r = 0; r < rows; r++) {
-            List<T> row = new ArrayList<T>(cols);
+            List<T> row = new ArrayList<>(cols);
             for (int c = 0; c < cols; c++) {
                 row.add(filler.apply(r, c));
             }
@@ -438,9 +437,8 @@ abstract public class MatTest {
     }
 
     /**
-     * Ensure that each element of the specified
-     * {@link Mat} takes the value specified by
-     * the given {@link Filler}, where equality is tested using the
+     * Ensure that each element of the specified {@link Mat} takes the value
+     * specified by the given {@link Filler}, where equality is tested using the
      * {@link TestCase#assertEquals(double, double, double)} method with the
      * tolerance specified by the
      * {@link DefaultTestConditions#getEqualityTolerance()} method.
@@ -455,10 +453,9 @@ abstract public class MatTest {
     }
 
     /**
-     * Ensure that each element of the specified
-     * {@link Mat} is the same as the value
-     * returned by the given {@link Filler}, where sameness is tested using the
-     * {@link TestCase#assertSame(Object, Object)} method.
+     * Ensure that each element of the specified {@link Mat} is the same as the
+     * value returned by the given {@link Filler}, where sameness is tested
+     * using the {@link TestCase#assertSame(Object, Object)} method.
      */
     private <T extends Number> void assertSame(Mat mat, MatFiller<T> filler) throws Exception {
         for (int row = 0; row < mat.rows(); row++) {

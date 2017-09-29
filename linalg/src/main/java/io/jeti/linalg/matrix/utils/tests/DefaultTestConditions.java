@@ -2,7 +2,7 @@ package io.jeti.linalg.matrix.utils.tests;
 
 public class DefaultTestConditions {
 
-    public static final double getEqualityTolerance() {
+    public static double getEqualityTolerance() {
         return 1e-8;
     }
 

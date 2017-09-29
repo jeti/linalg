@@ -339,8 +339,7 @@ abstract public class VecTest {
      * --------------------------------------------------
      */
     /**
-     * @return an instance of the concrete
-     *         {@link Vec} class to be tested.
+     * @return an instance of the concrete {@link Vec} class to be tested.
      */
     abstract public Vec getInstance();
 
@@ -355,7 +354,7 @@ abstract public class VecTest {
      */
     public int getElemMin() {
         return DefaultTestConditions.getElemMin();
-    };
+    }
 
     /**
      * @return the maximum number of elements a vector should have during
@@ -369,7 +368,7 @@ abstract public class VecTest {
     }
 
     /**
-     * @return A class capable of filling an array with an arbitrary type.
+     * A class capable of filling an array with an arbitrary type.
      *         Specifically, each element of an array can be set by calling this
      *         class's {@link #apply(int)} method.
      */
@@ -390,9 +389,8 @@ abstract public class VecTest {
     }
 
     /**
-     * Ensure that each element of the specified
-     * {@link Vec} takes the value specified by
-     * the given {@link Filler}, where equality is tested using the
+     * Ensure that each element of the specified {@link Vec} takes the value
+     * specified by the given {@link Filler}, where equality is tested using the
      * {@link TestCase#assertEquals(double, double, double)} method with the
      * tolerance specified by the
      * {@link DefaultTestConditions#getEqualityTolerance()} method.
@@ -404,10 +402,9 @@ abstract public class VecTest {
     }
 
     /**
-     * Ensure that each element of the specified
-     * {@link Vec} is the same as the value
-     * returned by the given {@link Filler}, where sameness is tested using the
-     * {@link TestCase#assertSame(Object, Object)} method.
+     * Ensure that each element of the specified {@link Vec} is the same as the
+     * value returned by the given {@link Filler}, where sameness is tested
+     * using the {@link TestCase#assertSame(Object, Object)} method.
      */
     private <T extends Number> void assertSame(Vec vec, ListFiller<T> filler) throws Exception {
         for (int ind = 0; ind < vec.size(); ind++) {
